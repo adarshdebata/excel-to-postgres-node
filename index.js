@@ -11,10 +11,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware to parse JSON bodies
 app.use(express.json());
 
+// Configure multer for file uploads
 const upload = multer({ dest: 'uploads/' });
 
+// Middleware to log responses to activity.log
 app.use((req, res, next) => {
   const oldSend = res.send;
   res.send = function (data) {
@@ -24,8 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// Use the dataRoutes, with multer to handle file uploads
 app.use('/data', upload.single('file'), dataRoutes(pool));
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on : ${PORT}`);
 });
