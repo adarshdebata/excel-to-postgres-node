@@ -20,9 +20,9 @@ const convertExcelToJson = async (filePath) => {
     };
     data.push(rowData);
   });
-    // Write the data to data.json
-    const jsonFilePath = path.join(__dirname, '../data.json');
-    fs.writeFileSync(jsonFilePath, JSON.stringify(data, null, 2), 'utf-8');
+  // Write the data to data.json
+  const jsonFilePath = path.join(__dirname, "../data.json");
+  fs.writeFileSync(jsonFilePath, JSON.stringify(data, null, 2), "utf-8");
   return data;
 };
 
